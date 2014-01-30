@@ -5,6 +5,7 @@ public class Hasard3
       final int MIN = 0;
       final int MAX = 1000000;
       int nbLances = 0;
+      final int LARGEURECRAN = 60;
 
       if (args.length == 1)
       {
@@ -28,9 +29,20 @@ public class Hasard3
 
                System.out.println("Valeur | Nombre d'occurences");
                System.out.println("-------|--------------------");
+               int plusGrand = Tab[0];
+               for (int k = 1; k <Tab.length; k++)
+               {
+                  if (Tab[k] > plusGrand)
+                     plusGrand = Tab[k];
+               }
                for (int j = 0; j < Tab.length; j++)
                {
-                  int nbdiese = Tab[j] / 10;
+                  int nbdiese = 0;
+                  if (nbLances != 0)
+                  {
+                      nbdiese = Tab[j] * LARGEURECRAN / plusGrand;
+                  }
+                  
                   if (j < 8)
                   {
                      System.out.print("     " + (j + 2) + " | ");
