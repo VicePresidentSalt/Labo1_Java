@@ -1,43 +1,70 @@
 public class Hasard3
 {
    public static void main(String args[])
-   {    
-      int Tab[] = new int[11];
-      
-      final int ESSAIE = 1000;
-         int Somme = 0;
-         for(int i = 0 ; i < ESSAIE ; i++)
+   {
+      final int MIN = 0;
+      final int MAX = 1000000;
+      int nbLances = 0;
+
+      if (args.length == 1)
+      {
+         try
          {
-         
-         int De1 = ( int )( (Math.random() * 6)+ 1 );
-         int De2 = ( int ) ( (Math.random() * 6)+ 1 );
-         int LancerDes = De1 + De2;
-         Tab[LancerDes-2]++;
+            int Choix = Integer.parseInt(args[0]);
+            if (Choix >= MIN && Choix <= MAX)
+            {
+               nbLances = Choix;
+
+               int Tab[] = new int[11];
+
+
+               for (int i = 0; i < nbLances; i++)
+               {
+                  int De1 = (int)((Math.random() * 6) + 1);
+                  int De2 = (int)((Math.random() * 6) + 1);
+                  int LancerDes = De1 + De2;
+                  Tab[LancerDes - 2]++;
+               }
+
+               System.out.println("Valeur | Nombre d'occurences");
+               System.out.println("-------|--------------------");
+               for (int j = 0; j < Tab.length; j++)
+               {
+                  int nbdiese = Tab[j] / 10;
+                  if (j < 8)
+                  {
+                     System.out.print("     " + (j + 2) + " | ");
+                     for (int f = 0; f < nbdiese; f++)
+                     {
+                        System.out.print("#");
+                     }
+                     System.out.println(" " + Tab[j]);
+                  }
+                  else
+                  {
+                     System.out.print("    " + (j + 2) + " | ");
+                     for (int f = 0; f < nbdiese; f++)
+                     {
+                        System.out.print("#");
+                     }
+                     System.out.println(" " + Tab[j]);
+                  }
+               }
+
+            }
+            else
+            {
+               System.out.println("Parametre hors borne");
+            }
          }
-         
-      System.out.println( "Valeur | Nombre d'occurences" );
-      System.out.println( "-------|--------------------" ); 
-       for( int j = 0 ; j < Tab.length ; j++)
-       {
-         int nbdiese = Tab[j]/10;
-         if( j < 8)
+         catch (NumberFormatException e)
          {
-         System.out.print( "     " + (j+2) + " | ");
-         for(int f = 0 ; f < nbdiese ; f++)
-        {
-            System.out.print("#");
-        }
-         System.out.println(" " + Tab[j]);
+            System.out.println("Parametre invalide");
          }
-         else
-         {
-         System.out.print( "    " + (j+2) + " | " );
-        for(int f = 0 ; f < nbdiese ; f++)
-        {
-            System.out.print("#");
-        }
-        System.out.println(" " +Tab[j]);
-        }
+      }
+      else
+      {
+         System.out.print("Trop de parametre");
       }
    }
 }
